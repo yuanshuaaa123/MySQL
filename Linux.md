@@ -3,9 +3,9 @@
 ## 基本的文件操作
 
 创建文件：touch  file
-复制文件：cp file file1
-cp file  /home/linux/file1
-重命名文件：mv file   file2
+重命名文件：cp file file1
+复制文件：cp file  /home/linux/file1
+mv file   file2
 移动文件：mv file  /home/linux/
 删除文件：rm  -rf file
 列出文件列表：ls -al  
