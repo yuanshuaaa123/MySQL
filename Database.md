@@ -137,12 +137,12 @@ rename table 原表名 to 新表名;
 例如，将aaa库备份到文件back_aaa中： [root@test1 root]# cd /home/data/mysql [root@test1 mysql]# mysqldump -u root -p --opt aaa > back_aaa
 
 .远程数据库（表）导出到本地数据库（表）文件 
-* ##### （1）导出数据库 
-* mysqldump -h192.168.1.1 -uroot -p123456 --databases mydb > mydb.bak;//将192.168.1.1主机上的mydb数据库导出到本地的mydb.bak文件中 
-* （mysqldump -uroot -p123456 --databases mydb1 > mydb1.bak;//将本地mysql服务器上的mydb1数据库导出到本地的mydb1.bak文件中） 
-* ##### （2）导出数据表 
-* mysqldump -h192.168.1.1 -uroot -p123456 mydb tb1 > tb1.bak;//将192.168.1.1主机上的mydb数据库的tb1数据表导出到本地的tb1.bak文件中 
-* （mysqldump -uroot -p123456 mydb1 tb2 > tb2.bak;//将本地主机上的mydb1数据库的tb2数据表导出到本地的tb2.bak文件中）
+（1）导出数据库 
+ mysqldump -h192.168.1.1 -uroot -p123456 --databases mydb > mydb.bak;//将192.168.1.1主机上的mydb数据库导出到本地的mydb.bak文件中 
+（mysqldump -uroot -p123456 --databases mydb1 > mydb1.bak;//将本地mysql服务器上的mydb1数据库导出到本地的mydb1.bak文件中） 
+（2）导出数据表 
+ mysqldump -h192.168.1.1 -uroot -p123456 mydb tb1 > tb1.bak;//将192.168.1.1主机上的mydb数据库的tb1数据表导出到本地的tb1.bak文件中 
+（mysqldump -uroot -p123456 mydb1 tb2 > tb2.bak;//将本地主机上的mydb1数据库的tb2数据表导出到本地的tb2.bak文件中）
 
 5. 导出表数据到文件中： mysql -uroot -p123456 --default-character-set=utf8 use guanjia; select _from driver into outfile '/tmp/a.txt'; 
 (select_ from crawlDocs order by DocCrawlTime desc limit 2000 into outfile '/tmp/weixinData' FIELDS TERMINATED BY ',';) 
