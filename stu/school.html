@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生专业信息管理</title>
+    <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css">
+    <style type="text/css">
+    body {
+        height: 100%;
+        background-color: lightblue;
+    }
+
+    ul li {
+    	list-style: none;
+    }
+
+    .header {
+        margin-bottom: 50px;
+    }
+
+    .operation>div {
+        padding: 15px;
+    }
+
+    .operation.row .text-center button {
+    	outline-style: none;
+    }
+
+    .forms li {
+        display: none;
+    }
+
+    .forms li button {
+        margin-right: 30px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1 class="header text-center">学生专业信息管理</h1>
+    <div class="container">
+        <div class="operation row">
+            <div class="text-center col-md-3 col-sm-6">
+                <button>添加专业信息</button>
+            </div>
+            <div class="text-center col-md-3 col-sm-6">
+                <button>查询专业信息</button>
+            </div>
+            <div class="text-center col-md-3 col-sm-6">
+                <button>修改专业信息</button>
+            </div>
+            <div class="text-center col-md-3 col-sm-6">
+                <button>删除专业信息</button>
+            </div>
+        </div>
+        <ul class="forms">
+            <li class="show">
+                <form class="form-horizontal" method="get" action="/cgi-bin/sx/addsc.cgi">
+                    <div class="form-group">
+                        <label for="mno" class="col-sm-2 control-label">专业号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mno" class="form-control" id="mno" placeholder="请输入学生专业号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mname" class="col-sm-2 control-label">专业名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mname" class="form-control" id="mname" placeholder="请输入专业名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mdept" class="col-sm-2 control-label">院系名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mdept" class="form-control" id="mdept" placeholder="请输入院系名称">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <button type="reset" class="btn btn-success">重置</button>
+                    </div>
+                </form>
+            </li>
+            <li>
+                <form class="form-horizontal" method="get" action="/cgi-bin/sx/selsc.cgi">
+                    <div class="form-group">
+                        <label for="mno-selsc" class="col-sm-2 control-label">输入专业号查询</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mno" class="form-control" id="mno-selsc" placeholder="输入*查询所有">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <button type="reset" class="btn btn-success">重置</button>
+                    </div>
+                </form>
+            </li>
+            <li>
+                <form class="form-horizontal" method="get" action="/cgi-bin/sx/modsc.cgi">
+                    <div class="form-group">
+                        <label for="mno-modsc" class="col-sm-2 control-label">专业号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mno" class="form-control" id="mno-modsc" placeholder="请输入学生专业号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mname-modsc" class="col-sm-2 control-label">专业名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mname" class="form-control" id="mname-modsc" placeholder="请输入专业名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mdept-modsc" class="col-sm-2 control-label">院系名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mdept" class="form-control" id="mdept-modsc" placeholder="请输入院系名称">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <button type="reset" class="btn btn-success">重置</button>
+                    </div>
+                </form>
+            </li>
+            <li>
+                <form class="form-horizontal" method="get" action="/cgi-bin/sx/delsc.cgi">
+                    <div class="form-group">
+                        <label for="mno-delsc" class="col-sm-2 control-label">输入要删除的专业号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mno" class="form-control" id="mno-delsc" placeholder="输入专业号">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <button type="reset" class="btn btn-success">重置</button>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <script src="./public/js/jquery-3.0.0.min.js"></script>
+    <script src="./public/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+
+    	var btns = $(".operation button");
+    	var lis = $(".forms li");
+        btns.addClass("btn btn-primary btn-lg");
+
+        for (var i = 0; i < btns.length; i++){
+        	btns.eq(i).click(i, function(event){
+        		lis.eq(event.data).addClass("show").siblings().removeClass("show");
+        	});
+        }
+
+    });
+    </script>
+</body>
+
+</html>
