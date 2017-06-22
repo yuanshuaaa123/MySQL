@@ -36,11 +36,11 @@ int cgiMain()
 
 	if (sno[0] == '*')
 	{
-		sprintf(sql, "select * from score");
+		sprintf(sql, "select score.sno,cname,score from score,info where score.sno = info.sno and state !='0'");
 	}
 	else
 	{
-		sprintf(sql, "select * from score where sno = %d ", atoi(sno));
+		sprintf(sql, "select score.sno,cname,score from score,info where score.sno = info.sno and state !='0' and score.sno = %d ", atoi(sno));
 	}
 
 
