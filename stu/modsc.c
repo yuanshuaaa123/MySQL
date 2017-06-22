@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <mysql/mysql.h>
 #include "cgic.h"
+char * headname = "head.html";
+char * footname = "foot.html";
 
 int cgiMain()
 {
@@ -35,6 +37,20 @@ int cgiMain()
 		return 1;
 	}
 
+	FILE * fd;
+	char ch;
+	if(!(fd = fopen(headname, "r"))){
+		fprintf(cgiOut, "Can not open file, %s\n", headname);
+		return -1;
+	}
+
+	ch = fgetc(fd);
+	while(ch != EOF){
+		fprintf(cgiOut, "%c", ch);
+		ch = fgetc(fd);
+	}
+	fclose(fd);
+
 	//fprintf(cgiOut, "name = %s, age = %s, stuId = %s\n", name, age, stuId);
 
 	int ret;
@@ -58,9 +74,6 @@ int cgiMain()
 		return -1;
 	}
 
-
-	fprintf(cgiOut,"update school set mname='%s', mdept= '%s' where mno = %d ", mname, mdept, atoi(mno));
-	fprintf(cgiOut, "<hr>");
 	sprintf(sql, "update school set mname='%s', mdept= '%s' where mno = %d ", mname, mdept, atoi(mno));
 	if ((ret = mysql_real_query(db, sql, strlen(sql) + 1)) != 0)
 	{

@@ -4,7 +4,8 @@
 #include <string.h>
 #include <mysql/mysql.h>
 #include "cgic.h"
-
+char * headname = "head.html";
+char * footname = "foot.html";
 
 int cgiMain()
 {
@@ -29,6 +30,20 @@ int cgiMain()
 		fprintf(cgiOut, "get mno error!\n");
 		return 1;
 	}
+
+	FILE * fd;
+	char ch;
+	if(!(fd = fopen(headname, "r"))){
+		fprintf(cgiOut, "Can not open file, %s\n", headname);
+		return -1;
+	}
+
+	ch = fgetc(fd);
+	while(ch != EOF){
+		fprintf(cgiOut, "%c", ch);
+		ch = fgetc(fd);
+	}
+	fclose(fd);
 
 	int ret;
 	MYSQL *db;

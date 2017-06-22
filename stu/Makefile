@@ -6,7 +6,7 @@ OBJS= add.cgi del.cgi mod.cgi sel.cgi addsc.cgi delsc.cgi modsc.cgi selsc.cgi ad
 all:$(OBJS)
 
 $(OBJS):%.cgi:%.c
-	$(CC) $(AFLAGS) $< cgic.c -o $@ $(LDFLAGS)	
+	$(CC) $(AFLAGS) $< cgic.c -o $@ $(LDFLAGS)
 
 .PHONY:clean
 clean:
@@ -17,3 +17,4 @@ install:
 	sudo cp info.html /var/www/html
 	sudo cp score.html /var/www/html
 	sudo cp school.html /var/www/html
+	cp head.html foot.html /usr/lib/cgi-bin/sx
